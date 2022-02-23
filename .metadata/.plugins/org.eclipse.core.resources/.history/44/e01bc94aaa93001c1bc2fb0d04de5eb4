@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>회원정보 페이지 입니다. -인증필요</h1>
+<h3>이름 : <%= %>  전화번호 : <%=phone %></h3>
+	<ul>
+		<li><a href="/user/login.html">로그인 페이지</a></li>
+		<li><a href="/user/join.html">회원가입 페이지</a></li>
+		<li><a href="/user/userInfo.html">회원정보 페이지</a></li>
+		<li><a href="/post/list.html">글목록 페이지</a></li>
+	</ul>
+	<%
+	String name = "전가은";
+	String phone = "01065325288";
+	%>
+</body>
+</html>

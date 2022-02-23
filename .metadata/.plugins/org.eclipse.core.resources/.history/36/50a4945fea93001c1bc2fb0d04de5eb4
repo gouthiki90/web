@@ -1,0 +1,82 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.util.concurrent.ExecutionException"%>
+<%@page import="javax.servlet.jsp.tagext.TryCatchFinally"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<%
+	//1. 테이블 생성
+	// 2. 쿼리스트링 파싱
+		// DB연결, SELECT
+		
+	
+		String id = request.getParameter("id"); //  문자열 받아서 자바 오브젝트로 파싱, BR로 읽는 모든 정보를 자바 오브젝트로 바꿈 
+		// http://localhost/user/userInfo.jsp?name=전가은
+		// 쿼리스트링을 파싱해주는 메서드
+		String name = request.getParameter("name"); 
+		String phone = request.getParameter("phone");
+	//3. DB연결 코드
+	try{
+		Class.forName("org.mariadb.jdbc.Driver"); 
+		Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/scott", "root", "cos1234");
+		System.out.println("DB접속 완료");
+		//4. SELECT로 Id, name, phone 받기
+		String sql = "SELECT ID, name, phone FROM userInfo WHERE ID = ? AND name =? AND phone = ?";
+		PreparedStatement pstmt = connection.prepareStatement(sql);
+		
+		pstmt.setString(1, id);
+		pstmt.setString(2, name);
+		pstmt.setString(3, phone);
+		
+		ResultSet rs = pstmt.executeQuery();
+		System.out.println(sql);
+		
+		rs.next();
+		
+		String ID2 = rs.getString("id");
+		String name2 = rs.getString("name");
+		String phone2 = rs.getString("phone");
+		
+		System.out.println(sql);
+		
+/* /* 		while(rs.next()){
+			if(name == "jeongaeun" && phone == "01065325288"){
+				pstmt.setString(1, "jeongaeun");
+				pstmt.setString(2, "01065325288");
+			} else if (name == "yeongin" && phone == "0104444"){
+				pstmt.setString(1, "yeongin");
+				pstmt.setString(2, "0104444");
+			} else {
+				System.out.println("실패");
+			}
+		} */ 
+
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	
+	
+	//5. 뿌려주기
+	%>
+<h1>회원정보 페이지 입니다. -인증필요</h1>
+<h3>ID : <%=ID %> 이름 : <%=name %>  전화번호 : <%=phone %></h3>
+	<ul>
+		<li><a href="/user/login.html">로그인 페이지</a></li>
+		<li><a href="/user/join.html">회원가입 페이지</a></li>
+		<li><a href="/user/userInfo.jsp">회원정보 페이지</a></li>
+		<li><a href="/post/list.html">글목록 페이지</a></li>
+	</ul>
+
+</body>
+</html>

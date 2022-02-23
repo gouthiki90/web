@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+	
+	// DB연결, SELECT
+	String name = request.getParameter("name"); //  문자열 받아서 자바 오브젝트로 파싱, BR로 읽는 모든 정보를 자바 오브젝트로 바꿈 
+	// http://localhost/user/userInfo.jsp?name=전가은
+	// 쿼리스트링을 파싱해주는 메서드
+	String phone = request.getParameter("phone")
+	%>
+<h1>회원정보 페이지 입니다. -인증필요</h1>
+<h3>이름 : <%=name %>  전화번호 : <%=phone %></h3>
+	<ul>
+		<li><a href="/user/login.html">로그인 페이지</a></li>
+		<li><a href="/user/join.html">회원가입 페이지</a></li>
+		<li><a href="/user/userInfo.jsp">회원정보 페이지</a></li>
+		<li><a href="/post/list.html">글목록 페이지</a></li>
+	</ul>
+
+</body>
+</html>
