@@ -151,9 +151,8 @@
         <!-- Access log processes all example.
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
-        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="/Users/jeonga-eun/Desktop/green_workspacce/wep_lap/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/first1" path="" reloadable="true" source="org.eclipse.jst.jee.server:first1"/></Host>
+      <Context docBase="/Users/jeonga-eun/Desktop/green_workspacce/wep_lap/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/mvc" path="" reloadable="true" source="org.eclipse.jst.jee.server:mvc"/></Host>
     </Engine>
   </Service>
 </Server>
